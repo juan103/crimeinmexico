@@ -93,7 +93,7 @@ resultsTable <- subset(resultsTable, rowSums(resultsTable) != 0)
 
 #Now I have a nice table called resultsTable
 
-# 4. We get the information ready for the plots---------------------------------
+# 4. We define the parameters of the plots---------------------------------
 
 # How the text should look like.
 fontPlotTitle <- list(
@@ -128,63 +128,6 @@ margin <- list(
 # 5. Plotting-------------------------------------------------------------------
 #Actually, I try to plot as many plots as possible. I made this for loop so I
 #don't have to code how to plot each one.
-for (i in 1:16){
-  #Here I define the tick spacing in the y axis
-  
-  ydtick <- floor(max(resultsTable[[i]])/8)
-  
-  plotTitle <- paste0('Número de homicidios dolosos + feminicidios mensuales en el <br> estado de ',
-                      stateNames[i],
-                      ' de acuerdo con el <br> Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública en<br> averiguaciones previas iniciadas al mes de septiembre 2021.')
-   
-  
-  p <- plot_ly()
-  
-  p <- add_lines(p,
-                 x= ~row.names(resultsTable),
-                 y= ~resultsTable[[i]],
-                 color = list(color = "cornflowerblue")
-  )
-  
-  
-  p <- layout(p,
-              title = plotTitle,
-              font = fontPlotTitle,
-              xaxis = list(title = 'Año',
-                           dtick = 12, 
-                           tickmode = "linear",
-                           titlefont = fontTitle,
-                           tickfont = fontTics,
-                           showline = TRUE,
-                           gridcolor = toRGB("gray80"),
-                           gridwidth = 2,
-                           linecolor = toRGB("black"),
-                           mirror = "ticks"
-              ),
-              
-              yaxis = list(title ='Número de casos',
-                           dtick = ydtick,
-                           range = c(0, max(resultsTable[[i]]) + ydtick),
-                           tickmode = "linear",
-                           titlefont = fontTitle,
-                           tickfont = fontTics,
-                           showline = TRUE,
-                           gridcolor = toRGB("gray80"),
-                           gridwidth = 2,
-                           linecolor = toRGB("black"),
-                           mirror = "ticks"
-              ),
-              margin = margin,
-              showlegend = FALSE
-  )
-  
-  
-  #outputFileName <- paste0(path, statesNames[i], ".png")
-  
-  print(p)
-  
-}
-
 #My computer (or R, i don't know) cannot keep more than ~20 plots in the memory,
 #so, I have to stop here and export the first 16 plots manually, and then go on
 #with the second half.
