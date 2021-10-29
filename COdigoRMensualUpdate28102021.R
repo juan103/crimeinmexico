@@ -132,9 +132,9 @@ for (i in 1:16){
   
   ydtick <- floor(max(resultsTable[[i]])/8)
   
-  plotTitle <- paste0('Número de homicidios dolosos + feminicidios mensuales en el <br> estado de ',
+  plotTitle <- paste0('NÃºmero de homicidios dolosos + feminicidios mensuales en el <br> estado de ',
                       stateNames[i],
-                      ' de acuerdo con el <br> Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública en<br> averiguaciones previas iniciadas al mes de septiembre 2021.')
+                      ' de acuerdo con el <br> Secretariado Ejecutivo del Sistema Nacional de Seguridad PÃºblica en<br> averiguaciones previas iniciadas al mes de septiembre 2021.')
    
   
   p <- plot_ly()
@@ -149,7 +149,7 @@ for (i in 1:16){
   p <- layout(p,
               title = plotTitle,
               font = fontPlotTitle,
-              xaxis = list(title = 'Año',
+              xaxis = list(title = 'AÃ±o',
                            dtick = 12, 
                            tickmode = "linear",
                            titlefont = fontTitle,
@@ -161,7 +161,7 @@ for (i in 1:16){
                            mirror = "ticks"
               ),
               
-              yaxis = list(title ='Número de casos',
+              yaxis = list(title ='NÃºmero de casos',
                            dtick = ydtick,
                            range = c(0, max(resultsTable[[i]]) + ydtick),
                            tickmode = "linear",
@@ -176,12 +176,7 @@ for (i in 1:16){
               margin = margin,
               showlegend = FALSE
   )
-  
-  
-  #outputFileName <- paste0(path, statesNames[i], ".png")
-  
   print(p)
-  
 }
 
 #My computer (or R, i don't know) cannot keep more than ~20 plots in the memory,
@@ -193,9 +188,9 @@ for (i in 17:32){
   
   ydtick <- floor(max(resultsTable[[i]])/8)
   
-  plotTitle <- paste0('Número de homicidios dolosos + feminicidios mensuales en el <br> estado de ',
+  plotTitle <- paste0('NÃºmero de homicidios dolosos + feminicidios mensuales en el <br> estado de ',
                       stateNames[i],
-                      ' de acuerdo con el <br> Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública en<br> averiguaciones previas iniciadas al mes de septiembre 2021.')
+                      ' de acuerdo con el <br> Secretariado Ejecutivo del Sistema Nacional de Seguridad PÃºblica en<br> averiguaciones previas iniciadas al mes de septiembre 2021.')
   
   
   p <- plot_ly()
@@ -210,7 +205,7 @@ for (i in 17:32){
   p <- layout(p,
               title = plotTitle,
               font = fontPlotTitle,
-              xaxis = list(title = 'Año',
+              xaxis = list(title = 'AÃ±o',
                            dtick = 12, 
                            tickmode = "linear",
                            titlefont = fontTitle,
@@ -222,7 +217,7 @@ for (i in 17:32){
                            mirror = "ticks"
               ),
               
-              yaxis = list(title ='Número de casos',
+              yaxis = list(title ='NÃºmero de casos',
                            dtick = ydtick,
                            range = c(0, max(resultsTable[[i]]) + ydtick),
                            tickmode = "linear",
@@ -237,12 +232,7 @@ for (i in 17:32){
               margin = margin,
               showlegend = FALSE
   )
-  
-  
-  #outputFileName <- paste0(path, statesNames[i], ".png")
-  
   print(p)
-  
 }
 
   
