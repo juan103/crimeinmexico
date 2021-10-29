@@ -15,8 +15,7 @@
 #First I clean the environment, so I know that this program can run from zero.
 rm(list=ls())
 
-#Now I define the libraries that I'll be using. I will be changing this from
-#time to time.
+#Now I define the libraries that I'll be using. 
 library(plotly)
 
 # 3. Imput information ------------------------------------------------------------
@@ -27,6 +26,8 @@ library(plotly)
 path = "C:\\Users\\Juan\\Documents\\1-Trips\\La4Times\\200919-ReporteIncidenciaDelictiva\\"
 fileName = "IDEFC_NM_sep21.csv"
 pathFile = paste0(path, fileName)
+
+#Note that this address will be different in your computer!
 
 #NOrnmally, I like to give a name to the first data set I make in an R file.
 #That's what rawFile is. It's the table containing the raw information.
@@ -132,9 +133,9 @@ for (i in 1:16){
   
   ydtick <- floor(max(resultsTable[[i]])/8)
   
-  plotTitle <- paste0('Número de homicidios dolosos + feminicidios mensuales en el <br> estado de ',
+  plotTitle <- paste0('NÃºmero de homicidios dolosos + feminicidios mensuales en el <br> estado de ',
                       stateNames[i],
-                      ' de acuerdo con el <br> Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública en<br> averiguaciones previas iniciadas al mes de septiembre 2021.')
+                      ' de acuerdo con el <br> Secretariado Ejecutivo del Sistema Nacional de Seguridad PÃºblica en<br> averiguaciones previas iniciadas al mes de septiembre 2021.')
    
   
   p <- plot_ly()
@@ -149,7 +150,7 @@ for (i in 1:16){
   p <- layout(p,
               title = plotTitle,
               font = fontPlotTitle,
-              xaxis = list(title = 'Año',
+              xaxis = list(title = 'AÃ±o',
                            dtick = 12, 
                            tickmode = "linear",
                            titlefont = fontTitle,
@@ -161,7 +162,7 @@ for (i in 1:16){
                            mirror = "ticks"
               ),
               
-              yaxis = list(title ='Número de casos',
+              yaxis = list(title ='NÃºmero de casos',
                            dtick = ydtick,
                            range = c(0, max(resultsTable[[i]]) + ydtick),
                            tickmode = "linear",
@@ -188,14 +189,14 @@ for (i in 1:16){
 #so, I have to stop here and export the first 16 plots manually, and then go on
 #with the second half.
 
-for (i in 17:32){
+for (i in 1:16){
   #Here I define the tick spacing in the y axis
   
   ydtick <- floor(max(resultsTable[[i]])/8)
   
-  plotTitle <- paste0('Número de homicidios dolosos + feminicidios mensuales en el <br> estado de ',
+  plotTitle <- paste0('NÃºmero de homicidios dolosos + feminicidios mensuales en el <br> estado de ',
                       stateNames[i],
-                      ' de acuerdo con el <br> Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública en<br> averiguaciones previas iniciadas al mes de septiembre 2021.')
+                      ' de acuerdo con el <br> Secretariado Ejecutivo del Sistema Nacional de Seguridad PÃºblica en<br> averiguaciones previas iniciadas al mes de septiembre 2021.')
   
   
   p <- plot_ly()
@@ -210,7 +211,7 @@ for (i in 17:32){
   p <- layout(p,
               title = plotTitle,
               font = fontPlotTitle,
-              xaxis = list(title = 'Año',
+              xaxis = list(title = 'AÃ±o',
                            dtick = 12, 
                            tickmode = "linear",
                            titlefont = fontTitle,
@@ -222,7 +223,7 @@ for (i in 17:32){
                            mirror = "ticks"
               ),
               
-              yaxis = list(title ='Número de casos',
+              yaxis = list(title ='NÃºmero de casos',
                            dtick = ydtick,
                            range = c(0, max(resultsTable[[i]]) + ydtick),
                            tickmode = "linear",
@@ -237,12 +238,60 @@ for (i in 17:32){
               margin = margin,
               showlegend = FALSE
   )
-  
-  
-  #outputFileName <- paste0(path, statesNames[i], ".png")
-  
-  print(p)
-  
+ print(p)
 }
 
+#This is the second half of the plots.
+
+for (i in 17:32){
+  #Here I define the tick spacing in the y axis
+  
+  ydtick <- floor(max(resultsTable[[i]])/8)
+  
+  plotTitle <- paste0('NÃºmero de homicidios dolosos + feminicidios mensuales en el <br> estado de ',
+                      stateNames[i],
+                      ' de acuerdo con el <br> Secretariado Ejecutivo del Sistema Nacional de Seguridad PÃºblica en<br> averiguaciones previas iniciadas al mes de septiembre 2021.')
+  
+  
+  p <- plot_ly()
+  
+  p <- add_lines(p,
+                 x= ~row.names(resultsTable),
+                 y= ~resultsTable[[i]],
+                 color = list(color = "cornflowerblue")
+  )
+  
+  
+  p <- layout(p,
+              title = plotTitle,
+              font = fontPlotTitle,
+              xaxis = list(title = 'AÃ±o',
+                           dtick = 12, 
+                           tickmode = "linear",
+                           titlefont = fontTitle,
+                           tickfont = fontTics,
+                           showline = TRUE,
+                           gridcolor = toRGB("gray80"),
+                           gridwidth = 2,
+                           linecolor = toRGB("black"),
+                           mirror = "ticks"
+              ),
+              
+              yaxis = list(title ='NÃºmero de casos',
+                           dtick = ydtick,
+                           range = c(0, max(resultsTable[[i]]) + ydtick),
+                           tickmode = "linear",
+                           titlefont = fontTitle,
+                           tickfont = fontTics,
+                           showline = TRUE,
+                           gridcolor = toRGB("gray80"),
+                           gridwidth = 2,
+                           linecolor = toRGB("black"),
+                           mirror = "ticks"
+              ),
+              margin = margin,
+              showlegend = FALSE
+  )
+ print(p)
+}
   
